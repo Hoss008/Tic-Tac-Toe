@@ -28,6 +28,6 @@ const gameBoard = (function () {
 
 gameBoard.mark(3,"X")
 gameBoard.mark(4,"O")
-gameBoard.mark(4,"X")
+// gameBoard.mark(4,"X")
 gameBoard.reset()
 console.log(gameBoard.boardArray);
