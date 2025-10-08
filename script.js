@@ -1,31 +1,30 @@
 const gameBoard = (function () {
-  const boardArray = ["", "", "", "", "", "", "", "", ""]; 
+  const boardArray = ["", "", "", "", "", "", "", "", ""];
 
   function mark(position, marker) {
     if (isEmpty(position)) {
-      return boardArray[position]=marker;
+      return (boardArray[position] = marker);
     } else {
       console.log("invalid position");
     }
   }
 
   function isEmpty(position) {
-    if (boardArray[position] == '') {
-      return boardArray[position] == '';
+    if (boardArray[position] == "") {
+      return boardArray[position] == "";
     } else {
       return false;
     }
   }
 
   function reset() {
-    for(let i=0;i<boardArray.length;i++){
-      boardArray[i]='';
+    for (let i = 0; i < boardArray.length; i++) {
+      boardArray[i] = "";
     }
   }
 
   return { mark, isEmpty, reset, boardArray };
 })();
-
 
 function createPlayer(name, marker) {
   function getName() {
@@ -39,12 +38,19 @@ function createPlayer(name, marker) {
   return { getName, getMarker };
 }
 
-const player1 = createPlayer('Player 1', 'X');
-const player2 = createPlayer('Player 2', 'O');
+// const player1 = createPlayer('Player 1', 'X');
+// const player2 = createPlayer('Player 2', 'O');
 
+const gameController = (function () {
+  const p1 = createPlayer("p1", "X");
+  const p2 = createPlayer("p2", "O");
 
-// gameBoard.mark(3,"X")
-// gameBoard.mark(4,"O")
-// // gameBoard.mark(4,"X")
-// gameBoard.reset()
-// console.log(gameBoard.boardArray);
+  let currentPlayer = p1;
+
+  function startGame() {
+    gameBoard.reset();
+  }
+  function playRound() {
+    currentPlayer = p2;
+  }
+})();
