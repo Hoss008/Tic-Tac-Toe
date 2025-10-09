@@ -57,12 +57,60 @@ const gameController = (function () {
     }
   }
 
-  return { startGame, playRound };
+  function checkWin() {
+    const winningCombos = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    winningCombos.forEach((element) => {
+      if (element == gameBoard.boardArray[element] && element != null) {
+        console.log("WINNER");
+      } else {
+        console.log("LOSER");
+      }
+    });
+  }
+
+  return { startGame, playRound, checkWin };
 })();
 
-gameController.startGame();
-gameController.playRound(1);
-gameController.playRound(2);
-gameController.playRound(2);
+// gameController.startGame()
+// gameController.playRound(1)
+// gameController.playRound(2)
+// gameController.playRound(4)
+// gameController.playRound(8)
+// gameController.playRound(7)
+// gameController.checkWin()
+// console.log(gameBoard.boardArray);
 
-console.log(gameBoard.boardArray);
+
+// function checkWin() {
+//   const board = gameBoard.boardArray;
+//   const winningCombos = [
+//     [0, 1, 2], [3, 4, 5], [6, 7, 8],
+//     [0, 3, 6], [1, 4, 7], [2, 5, 8],
+//     [0, 4, 8], [2, 4, 6],
+//   ];
+
+//   for (const [a, b, c] of winningCombos) {
+//     if (
+//       board[a] &&
+//       board[a] === board[b] &&
+//       board[a] === board[c]
+//     ) {
+//       console.log(`${board[a]} wins!`);
+//       return true;
+//     }
+//   }
+
+//   console.log("No winner yet");
+//   return false;
+// }
+//this was made by chat GPT
