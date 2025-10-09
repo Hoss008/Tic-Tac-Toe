@@ -38,19 +38,31 @@ function createPlayer(name, marker) {
   return { getName, getMarker };
 }
 
-// const player1 = createPlayer('Player 1', 'X');
-// const player2 = createPlayer('Player 2', 'O');
-
 const gameController = (function () {
-  const p1 = createPlayer("p1", "X");
-  const p2 = createPlayer("p2", "O");
+  const p1 = createPlayer("Player 1", "X");
+  const p2 = createPlayer("Player 2", "O");
 
   let currentPlayer = p1;
 
   function startGame() {
     gameBoard.reset();
   }
-  function playRound() {
-    currentPlayer = p2;
+  function playRound(position) {
+    gameBoard.mark(position, currentPlayer.getMarker());
+
+    if (currentPlayer == p1) {
+      currentPlayer = p2;
+    } else {
+      currentPlayer = p1;
+    }
   }
+
+  return { startGame, playRound };
 })();
+
+gameController.startGame();
+gameController.playRound(1);
+gameController.playRound(2);
+gameController.playRound(2);
+
+console.log(gameBoard.boardArray);
