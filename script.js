@@ -47,8 +47,19 @@ const gameController = (function () {
   function startGame() {
     gameBoard.reset();
   }
+
   function playRound(position) {
+    const board = gameBoard.boardArray;
+
+    if (board[position] !== "") {
+      console.log("Spot already taken!");
+      return;
+    }
+
     gameBoard.mark(position, currentPlayer.getMarker());
+
+    if (checkWin()) return;
+    if (checkDraw()) return;
 
     if (currentPlayer == p1) {
       currentPlayer = p2;
@@ -81,14 +92,25 @@ const gameController = (function () {
     return false;
   }
 
-  return { startGame, playRound, checkWin };
+  function checkDraw() {
+    const board = gameBoard.boardArray;
+
+    for (const element of board) {
+      if (element === "") {
+        return false;
+      }
+    }
+    console.log("It's a draw!");
+    return true;
+  }
+
+  return { startGame, playRound, checkWin, checkDraw };
 })();
 
 gameController.startGame();
+gameController.playRound(0);
+gameController.playRound(1);
 gameController.playRound(3);
-gameController.playRound(2);
 gameController.playRound(4);
-gameController.playRound(8);
-gameController.playRound(5);
-gameController.checkWin();
-// console.log(gameBoard.boardArray);
+gameController.playRound(6);
+console.log(gameBoard.boardArray);
